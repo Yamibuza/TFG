@@ -1,10 +1,11 @@
 import { Routes } from '@angular/router';
 import { LobbyComponent } from './lobby/lobby.component';
-import { FooterComponent } from './footer/footer.component';
+import { LoginComponent } from './login/login.component';
 
 export const routes: Routes = [
 
-  { path: '', component: LobbyComponent },
-  { path: 'foot', component: FooterComponent },
+  { path: 'home', component: LobbyComponent },
+  { path: 'login', component: LoginComponent },
+  { path: '**', component: LobbyComponent},
 
 ];
