@@ -1,15 +1,15 @@
 <div class="container mx-auto mt-10 p-6 max-w-md bg-white shadow-lg rounded-lg">
   <h2 class="text-xl font-bold text-center">Iniciar Sesión</h2>
 
-  <form (submit)="login()">
+  <form (ngSubmit)="login()">
     <div class="mt-4">
       <label class="block">Email</label>
-      <input [(ngModel)]="email" type="email" required class="w-full border p-2 rounded">
+      <input type="email" [formControl]="email" placeholder="Correo electrónico" class="w-full border p-2 rounded">
     </div>
 
     <div class="mt-4">
       <label class="block">Contraseña</label>
-      <input [(ngModel)]="password" type="password" required class="w-full border p-2 rounded">
+      <input type="password" [formControl]="password" placeholder="Contraseña" class="w-full border p-2 rounded">
     </div>
 
     @if (errorMessage) {
