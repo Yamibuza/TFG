@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -11,22 +11,29 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 })
 export class LoginComponent {
 
-  email = new FormControl('');
-  password = new FormControl('');
+  loginForm = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', Validators.required),
+  });
+
   errorMessage: string = '';
 
   constructor(private authService: AuthService) {}
 
   login() {
-    const emailValue = this.email.value;
-    const passwordValue = this.password.value;
 
-    if (emailValue && passwordValue) {
-      this.authService.login(emailValue, passwordValue).subscribe(response => {
+    if (this.loginForm.valid) {
+
+      const email = this.loginForm.value.email ?? '';
+      const password = this.loginForm.value.password ?? '';
+
+      this.authService.login(email, password).subscribe(response => {
         if (!response.success) {
+
           this.errorMessage = response.message;
         }
       });
+
     }
   }
 

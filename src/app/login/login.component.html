@@ -11,23 +11,49 @@
   <div class="container mx-auto mt-6 p-6 max-w-md bg-[#201E1F] text-[#FEEFDD] shadow-lg rounded-lg">
     <h2 class="text-xl font-bold text-center text-[#FF4000]">Iniciar Sesión</h2>
 
-    <form (ngSubmit)="login()">
-      <div class="mt-5">
-        <label class="block mb-2">Email</label>
-        <input type="email" [formControl]="email" placeholder="Correo electrónico" class="w-full p-2 rounded bg-gradient-to-r from-[#FEEFDD] to-[#FAAA8D] text-[#201E1F] placeholder-[#201E1F]">
-      </div>
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
 
       <div class="mt-5">
+
+        <label class="block mb-2">Email</label>
+        <input type="email" formControlName="email" placeholder="Correo electrónico"
+          class="w-full p-2 rounded bg-gradient-to-r from-[#FEEFDD] to-[#FAAA8D] text-[#201E1F] placeholder-[#201E1F]">
+
+        </div>
+
+      <div class="mt-5">
+
         <label class="block mb-2">Contraseña</label>
-        <input type="password" [formControl]="password" placeholder="Contraseña" class="w-full p-2 rounded bg-gradient-to-r from-[#FEEFDD] to-[#FAAA8D] text-[#201E1F] placeholder-[#201E1F]">
+        <input type="password" formControlName="password" placeholder="Contraseña"
+          class="w-full p-2 rounded bg-gradient-to-r from-[#FEEFDD] to-[#FAAA8D] text-[#201E1F] placeholder-[#201E1F]">
+
       </div>
+
 
       @if (errorMessage) {
 
-      <p class="text-red-500 mt-2">{{ errorMessage }}</p>
+      <p class="text-[#50B2C0] mt-2">{{ errorMessage }}</p>
       }
 
-      <button type="submit" class="mt-8 w-full text-[#FF4000] hover:text-[#FEEFDD] border border-[#FF4000] hover:bg-[#FF4000] font-medium rounded-lg text-sm text-center p-2 mt-4">Entrar</button>
+      @if (loginForm.controls['email'].hasError('required')) {
+
+      <p class="text-[#50B2C0] mt-2">!Email vacío</p>
+      }
+
+      @if (loginForm.controls['email'].hasError('email')) {
+
+      <p class="text-[#50B2C0] mt-2">!Email no válido</p>
+      }
+
+      @if (loginForm.controls['password'].hasError('required')) {
+
+      <p class="text-[#50B2C0] mt-2">!Contraseña vacía</p>
+      }
+
+
+      <button type="submit" [disabled]="loginForm.invalid"
+        class="mt-8 w-full text-[#FF4000] hover:text-[#FEEFDD] border border-[#FF4000] hover:bg-[#FF4000] font-medium rounded-lg text-sm text-center p-2 mt-4">Iniciar
+        sesión</button>
     </form>
   </div>
 
