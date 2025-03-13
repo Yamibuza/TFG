@@ -10,7 +10,13 @@ export class AuthService {
   private apiUrl = 'http://localhost/jv_tfg/api';
   private authState = new BehaviorSubject<boolean>(false);
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    // Comprobamos si hay un usuario en localStorage al inicializar un AuthService
+    const user = localStorage.getItem('user');
+    if (user) {
+      this.authState.next(true); // Si hay usuario, lo marcamos como autenticado
+    }
+  }
 
   login(email: string, password: string): Observable<any> {
     return this.http
@@ -36,14 +42,4 @@ export class AuthService {
     return this.authState.asObservable();
   }
 
-  checkSession(): void {
-    this.http
-      .get<any>(`${this.apiUrl}/checkSession.php`)
-      .subscribe((response) => {
-        if (response.loggedIn) {
-          localStorage.setItem('user', JSON.stringify(response.user));
-          this.authState.next(true);
-        }
-      });
-  }
 }

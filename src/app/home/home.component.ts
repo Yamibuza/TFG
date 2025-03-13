@@ -1,19 +1,20 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-navbar',
+  selector: 'app-home',
   standalone: true,
-  imports: [RouterLink],
-  templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css',
+  imports: [],
+  templateUrl: './home.component.html',
+  styleUrl: './home.component.css'
 })
-export class NavbarComponent {
-  isLogged = false;
-  username: string = '';
+export class HomeComponent {
 
-  constructor(private authService : AuthService) {}
+  isLogged = false;
+  username = '';
+
+  constructor(private authService : AuthService, private router : Router) {}
 
   ngOnInit(){
 
@@ -26,9 +27,13 @@ export class NavbarComponent {
 
           const user = JSON.parse(localStorage.getItem('user') || '{}');
           this.username = user.username || '';
+
+        }else{
+
+          alert('Debes iniciar sesión para acceder a esta página');
+          this.router.navigate(['/lobby']);
         }
       }
     )
   }
-
 }

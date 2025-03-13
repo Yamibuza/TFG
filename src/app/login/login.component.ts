@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,7 @@ export class LoginComponent {
 
   errorMessage: string = '';
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router : Router) {}
 
   login() {
 
@@ -34,7 +35,7 @@ export class LoginComponent {
         }
       });
 
+      this.router.navigate(['/home']);
     }
   }
-
 }
