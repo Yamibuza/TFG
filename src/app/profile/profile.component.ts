@@ -9,4 +9,11 @@ import { Component } from '@angular/core';
 })
 export class ProfileComponent {
 
+  username = '';
+
+  ngOnInit() {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    this.username = user.username || '';
+  }
+
 }

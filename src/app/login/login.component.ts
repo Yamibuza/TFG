@@ -32,10 +32,12 @@ export class LoginComponent {
         if (!response.success) {
 
           this.errorMessage = response.message;
+        }else{
+
+          this.router.navigate(['/dashboard']);
         }
       });
 
-      this.router.navigate(['/home']);
     }
   }
 }
