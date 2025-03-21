@@ -43,6 +43,7 @@ if (!$user) {
   $_SESSION['user_id'] = $user['id'];
   $_SESSION['username'] = $user['username'];
   $_SESSION['email'] = $user['email'];
+  $_SESSION['rol'] = $user['rol'];
 
   // Devolvemos al back un mensaje positivo y el objeto usuario con el que se ha iniciado sesión con todas sus propiedadews
   echo json_encode([
@@ -51,7 +52,8 @@ if (!$user) {
     "user" => [
       "id" => $user['id'],
       "username" => $user['username'],
-      "email" => $user['email']
+      "email" => $user['email'],
+      "rol" => $user['rol'],
     ]
   ]);
 }

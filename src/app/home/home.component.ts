@@ -9,9 +9,11 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
   username = '';
+  role = '';
 
   ngOnInit() {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     this.username = user.username || '';
+    this.role = user.rol || '';
   }
 }
