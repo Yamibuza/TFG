@@ -15,5 +15,6 @@ export class HomeComponent {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     this.username = user.username || '';
     this.role = user.rol || '';
+
   }
 }

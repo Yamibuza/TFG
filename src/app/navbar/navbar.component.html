@@ -21,7 +21,7 @@
         <li class="relative">
           <button (click)="toggleDropdown()" class="flex items-center text-[#FF4000] hover:text-[#50B2C0]">
 
-            <svg class="w-4 h-4 transform transition-transform mt-1" [ngClass]="{'rotate-180': dropdownOpen}"
+            <svg class="w-6 h-4 transform transition-transform mt-1" [ngClass]="{'rotate-180': dropdownOpen}"
               fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
@@ -30,32 +30,31 @@
           </button>
 
           <!-- Menú desplegable -->
-          <ul *ngIf="dropdownOpen"
-            class="rounded-md absolute right-0 mt-2 w-40 bg-[#201E1F] text-[#FEEFDD] shadow-lg rounded-md shadow-lg border border-2 border-[#FF4000]">
-            <li>
+          @if(dropdownOpen){
+          <ul
+            class="rounded-md absolute right-0 mt-2 w-[450%] bg-[#201E1F] text-[#FEEFDD] shadow-lg rounded-md shadow-lg border border-2 border-[#FF4000]">
+
+            @if(rol == 'admin'){
+            <!-- EJEMPLO
               <a routerLink="/profile" class="block px-4 py-2 hover:bg-[#FF4000] hover:text-[#201E1F]">
                 Profile
               </a>
-            </li>
-            <li>
-              <a routerLink="/home" class="block px-4 py-2 hover:bg-[#FF4000] hover:text-[#201E1F]">
-                Friends
-              </a>
-            </li>
+            -->
+            <a routerLink="/control" class="block px-4 py-2 hover:bg-[#FF4000] hover:text-[#201E1F]">
+              Herramientas de administrador
+            </a>
+            }
+
             <li>
               <button (click)="logout()" class="w-full text-left px-4 py-2 hover:bg-[#FF4000] hover:text-[#201E1F]">
                 Logout
               </button>
             </li>
           </ul>
+          }
         </li>
-
-        <li><a routerLink="/home" class="py-2 px-3 hover:text-[#FF4000]">Groups</a></li>
-
-        <li><a routerLink="/contact" class="py-2 px-3 hover:text-[#FF4000]">Contact us</a></li>
-
       </ul>
-
     </div>
+
   </div>
 </nav>

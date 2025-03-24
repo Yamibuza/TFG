@@ -15,19 +15,14 @@
 
       <div class="mt-5">
 
-        <label class="block mb-2">Email</label>
+        <label class="block mb-2">Nombre de usuario</label>
 
-        @if (loginForm.controls['email'].hasError('required')) {
+        @if (loginForm.controls['username'].hasError('required')) {
 
-        <p class="text-[#50B2C0] mb-2">! Email vacío</p>
+        <p class="text-[#50B2C0] mb-2">! Nombre de usuario necesario</p>
         }
 
-        @if (loginForm.controls['email'].hasError('email')) {
-
-        <p class="text-[#50B2C0] mb-2">! Email no válido</p>
-        }
-
-        <input type="email" formControlName="email" placeholder="Correo electrónico"
+        <input type="text" formControlName="username" placeholder="Nombre de usuario"
           class="w-full p-2 rounded bg-gradient-to-r from-[#FEEFDD] to-[#FAAA8D] text-[#201E1F] placeholder-[#201E1F]">
 
       </div>

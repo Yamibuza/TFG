@@ -8,20 +8,20 @@ include 'db.php';
 $data = json_decode(file_get_contents("php://input"));
 
 // Validamos que se hayan enviado datos
-if (!isset($data->email) || !isset($data->password)) {
+if (!isset($data->username) || !isset($data->password)) {
   echo json_encode(["success" => false, "message" => "Faltan datos"]);
   exit();
 }
 
 // nos conectamos a la BBDD con la funcion getDBConnection() que tenemos en db.php (archivo que incluimos en login.php)
 $conn = getDBConnection();
-$email = $data->email;
+$username = $data->username;
 $password = $data->password;
 
 // Realizamos la consulta sql para validar el usuario recibido
-$sql = "SELECT * FROM users WHERE email = ?";
+$sql = "SELECT * FROM users WHERE username = ?";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $email);
+$stmt->bind_param("s", $username);
 $stmt->execute();
 $result = $stmt->get_result();
 $user = $result->fetch_assoc();

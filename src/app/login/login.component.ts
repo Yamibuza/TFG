@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 export class LoginComponent {
 
   loginForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
+    username: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
   });
 
@@ -25,10 +25,10 @@ export class LoginComponent {
 
     if (this.loginForm.valid) {
 
-      const email = this.loginForm.value.email ?? '';
+      const username = this.loginForm.value.username ?? '';
       const password = this.loginForm.value.password ?? '';
 
-      this.authService.login(email, password).subscribe(response => {
+      this.authService.login(username, password).subscribe(response => {
         if (!response.success) {
 
           this.errorMessage = response.message;

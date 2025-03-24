@@ -1,0 +1,33 @@
+<div class="min-h-screen bg-gradient-to-r from-[#FEEFDD] to-[#FAAA8D]">
+  <div class="p-4 text-[40px] text-[#201E1F]">
+    <h1>Herramientas de Administrador</h1>
+  </div>
+
+  <div class="p-4">
+
+    <ul class="flex w-full items-center border-2 border-[#FF4000] rounded-md">
+      <li class="flex-1 text-center hover:bg-[#FF4000]">
+        <button (click)="componenteSeleccionado = 'users'" class="p-1 w-full h-full">Editar Usuarios</button>
+      </li>
+      <li class="flex-1 text-center hover:bg-[#FF4000]">
+        <button (click)="componenteSeleccionado = ''" class="p-1 w-full h-full">Editar Grupos</button>
+      </li>
+      <li class="flex-1 text-center hover:bg-[#FF4000]">
+        <button (click)="componenteSeleccionado = ''" class="p-1 w-full h-full">Otras Opciones</button>
+      </li>
+    </ul>
+
+  </div>
+  @if (componenteSeleccionado !== '') {
+  <div class="m-4 border-2 border-[#FF4000] rounded-md p-4">
+    @switch (componenteSeleccionado) {
+
+    @case ('users') {<app-user-control></app-user-control>}
+
+    @case ('grupos') {}
+
+    @case ('otros') {}
+    }
+  </div>
+  }
+</div>

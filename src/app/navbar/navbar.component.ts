@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 export class NavbarComponent {
 
   username: string = '';
+  rol: string = '';
   dropdownOpen: boolean = false;
 
   constructor(private authService: AuthService, private router : Router) {}
@@ -24,12 +25,9 @@ export class NavbarComponent {
       if (isAuth) {
         const user = JSON.parse(localStorage.getItem('user') || '{}');
         this.username = user.username || '';
+        this.rol = user.rol || '';
       }
     });
-  }
-
-  toggleDropdown() {
-    this.dropdownOpen = !this.dropdownOpen;
   }
 
   logout() {
@@ -47,6 +45,11 @@ export class NavbarComponent {
       }, 100);
 
     }
+  }
+
+  //Métodos del boton desplegable
+  toggleDropdown() {
+    this.dropdownOpen = !this.dropdownOpen;
   }
 
   @HostListener('document:click', ['$event'])
