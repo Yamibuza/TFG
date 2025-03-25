@@ -1,20 +1,36 @@
 <div class="m-4 w-[98%] rounded-md p-4 border-2 border-[#FF4000] bg-white">
 
-  <h3 class="mb-2 ml-4">Añadir usuarios</h3>
+  <h2 class="mb-2 ml-4 text-lg">Añadir usuarios</h2>
   <hr class="border border-[#FF4000]">
 
   <!--
   <label for="numero">Crear <input name="numero" type="number" class="w-[6ch] mt-4 border-2 border-[#FF4000] rounded-md text-right" min="1" max="99"> usuarios</label>
   -->
-  <div class="m-4">
+  <div class="p-4">
     <label for="numero">Registrar
 
-      <select name="numero" id="numero">
+      <select name="numero" id="numero" [(ngModel)]="valueSelect" (change)="onChangeSelect()">
 
-        @for (i of iSelect | repeat; track $index) {
+        @for (i of 9 | repeat; track $index) {
         <option [value]="i + 1">{{i + 1}}</option>
         }
       </select> usuario/s
     </label>
+
+    @for (formGroup of formArray.controls; track $index) {
+    <div class="mt-4 bg-[#FEEFDD] rounded-md p-4">
+      <h3>Nuevo usuario {{$index + 1}}</h3>
+      <app-user-form></app-user-form>
+    </div>
+    }
+
+    <div class="mt-4">
+      <button
+        class="bg-[#FF4000] text-white px-4 py-2 rounded-md hover:opacity-90"
+        (click)="submit()"
+      >
+        Registrar {{valueSelect}} usuario/s
+      </button>
+    </div>
   </div>
 </div>
