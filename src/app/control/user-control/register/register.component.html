@@ -9,7 +9,7 @@
   <div class="p-4">
     <label for="numero">Registrar
 
-      <select name="numero" id="numero" [(ngModel)]="valueSelect" (change)="onChangeSelect()">
+      <select name="numero" id="numero" [(ngModel)]="valueSelect" (change)="onChangeSelect()" class="p-[2px]">
 
         @for (i of 9 | repeat; track $index) {
         <option [value]="i + 1">{{i + 1}}</option>
@@ -20,7 +20,7 @@
     @for (formGroup of formArray.controls; track $index) {
     <div class="mt-4 bg-[#FEEFDD] rounded-md p-4">
       <h3>Nuevo usuario {{$index + 1}}</h3>
-      <app-user-form></app-user-form>
+      <app-user-form [formGroup]="formGroup"></app-user-form>
     </div>
     }
 

@@ -25,17 +25,14 @@ import { UserFormComponent } from './user-form/user-form.component';
   styleUrl: './register.component.css',
 })
 export class RegisterComponent implements OnInit {
+
   valueSelect: number = 1;
-  formArray!: FormArray;
+  formArray!: FormArray<FormGroup>;
 
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
-    this.initFormArray();
-  }
-
-  initFormArray(): void {
-    this.formArray = this.fb.array([]);
+    this.formArray = this.fb.array<FormGroup>([]);
     this.updateFormArray(this.valueSelect);
   }
 
@@ -46,6 +43,8 @@ export class RegisterComponent implements OnInit {
         this.fb.group({
           nombre: ['', Validators.required],
           email: ['', [Validators.required, Validators.email]],
+          password: ['', [Validators.required]],
+          rol: ['', [Validators.required],]
           // puedes añadir más campos
         })
       );

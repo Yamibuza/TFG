@@ -1,4 +1,20 @@
-<form [formGroup]="formGroup" class="grid gap-2">
-  <input type="text" placeholder="Nombre" formControlName="nombre" class="border p-2 rounded-md" />
-  <input type="email" placeholder="Email" formControlName="email" class="border p-2 rounded-md" />
-</form>
+<div class="mt-4">
+  <form [formGroup]="formGroup" class="grid gap-2">
+
+    <label for="nombre">Nombre de usuario</label>
+    <input type="text" placeholder="Nombre" formControlName="nombre" class="border p-2 rounded-md w-[45%]" />
+
+    <label for="email">Email</label>
+    <input type="email" placeholder="Email" formControlName="email" class="border p-2 rounded-md w-[45%]" />
+
+    <label for="rol">Nivel de permisos</label>
+    <select name="rol" id="rol" formControlName="rol" class="border p-2 rounded-md w-[15%] bg-white">
+      <option value="" selected hidden disabled>Selecciona una opción</option>
+      <option value="admin">Administrador</option>
+      <option value="user">Usuario</option>
+    </select>
+
+    <label for="password">Contraseña</label>
+    <input type="text" placeholder="Contraseña" formControlName="password" class="border p-2 rounded-md w-[45%]">
+  </form>
+</div>
