@@ -24,7 +24,7 @@ export class UserService {
      return this.http.post(`${this.apiUrl}/register.php`, user);
   }*/
 
-  createMultipleUsers(users: Usuario[]): Observable<any> {
+  crearUsers(users: Usuario[]): Observable<any> {
     return this.http.post(`${this.apiUrl}/register.php`, users);
   }
 

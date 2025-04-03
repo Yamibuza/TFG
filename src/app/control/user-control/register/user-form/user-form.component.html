@@ -16,5 +16,12 @@
 
     <label for="password">Contraseña</label>
     <input type="text" placeholder="Contraseña" formControlName="password" class="border p-2 rounded-md w-[45%]">
+
+    @if(usuario){
+      <div class="mt-4 flex gap-4">
+        <button type="submit" class="bg-[#FF4000] text-white px-4 py-2 rounded-md">Guardar</button>
+        <button type="button" (click)="cancelarEdicion()" class="bg-gray-300 px-4 py-2 rounded-md">Cancelar</button>
+      </div>
+    }
   </form>
 </div>

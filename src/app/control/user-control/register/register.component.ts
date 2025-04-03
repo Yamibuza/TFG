@@ -74,12 +74,23 @@ export class RegisterComponent implements OnInit {
         rol: form.rol
       }));
 
-      this.userService.createMultipleUsers(usuarios).subscribe({
+      this.userService.crearUsers(usuarios).subscribe({
         next: (res) => {
           console.log('Registro exitoso ->', res);
+
+          if(usuarios.length === 1){
+
+            alert('Usuario registrado correctamente');
+          }else{
+
+            alert('Usuarios registrados correctamente');
+          }
+
+          this.updateFormArray(this.valueSelect = 1);
         },
         error: (err) => {
           console.error('Error en el registro ->', err);
+          alert('Error en el registro');
         }
       });
     } else {
