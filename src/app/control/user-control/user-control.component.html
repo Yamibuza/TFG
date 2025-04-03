@@ -3,8 +3,8 @@
     <li class="relative">
       <button (click)="toggleDropdown(1)" class="flex items-center  text-[#201E1F] hover:text-[#FF4000]">
 
-        <svg class="w-6 h-4 transform transition-transform mt-1" [ngClass]="{'rotate-180': dropdownOpen1}"
-          fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <svg class="w-6 h-4 transform transition-transform mt-1" [ngClass]="{'rotate-180': dropdownOpen1}" fill="none"
+          stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
         </svg>
 
@@ -12,7 +12,9 @@
       </button>
 
       @if (dropdownOpen1 === true) {
-        <app-register></app-register>
+      <div class="p-2 m-2 bg-white rounded-lg">
+        <app-user-list mode="admin"></app-user-list>
+      </div>
       }
 
     </li>
@@ -20,8 +22,8 @@
     <li class="relative">
       <button (click)="toggleDropdown(2)" class="flex items-center text-[#201E1F] hover:text-[#FF4000]">
 
-        <svg class="w-6 h-4 transform transition-transform mt-1" [ngClass]="{'rotate-180': dropdownOpen2}"
-          fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <svg class="w-6 h-4 transform transition-transform mt-1" [ngClass]="{'rotate-180': dropdownOpen2}" fill="none"
+          stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
         </svg>
 
@@ -29,7 +31,7 @@
       </button>
 
       @if (dropdownOpen2 === true) {
-        <app-register></app-register>
+      <app-register></app-register>
       }
     </li>
 

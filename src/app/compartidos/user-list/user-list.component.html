@@ -1,0 +1,25 @@
+<ul class="flex flex-col gap-2">
+  @for (usuario of usuarios; track $index) {
+    <li class="p-2">
+      @switch (mode) {
+        @case ('simple') {
+          {{ usuario.username }}
+        }
+
+        @case ('admin') {
+          <div class="flex justify-between items-center">
+            <div>
+              <p><strong>{{ usuario.username }}</strong> ({{ usuario.email }})</p>
+              <p>Rol: {{ usuario.rol }}</p>
+            </div>
+            <div class="flex gap-2">
+              <button class="text-blue-600 hover:underline">Editar</button>
+              <button class="text-red-600 hover:underline">Eliminar</button>
+            </div>
+          </div>
+          <hr class="border border-[#FF4000]">
+        }
+      }
+    </li>
+  }
+</ul>

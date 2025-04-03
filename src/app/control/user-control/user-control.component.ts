@@ -1,11 +1,12 @@
 import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RegisterComponent } from "./register/register.component";
+import { UserListComponent } from "../../compartidos/user-list/user-list.component";
 
 @Component({
   selector: 'app-user-control',
   standalone: true,
-  imports: [CommonModule, RegisterComponent],
+  imports: [CommonModule, RegisterComponent, UserListComponent],
   templateUrl: './user-control.component.html',
   styleUrl: './user-control.component.css',
 })

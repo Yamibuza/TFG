@@ -10,6 +10,8 @@ import {
 } from '@angular/forms';
 import { RepeatPipe } from '../../../pipes/repeat.pipe';
 import { UserFormComponent } from './user-form/user-form.component';
+import { UserService } from '../../../services/user.service';
+import { Usuario } from '../../../models/usuario.model';
 
 @Component({
   selector: 'app-register',
@@ -29,7 +31,7 @@ export class RegisterComponent implements OnInit {
   valueSelect: number = 1;
   formArray!: FormArray<FormGroup>;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private userService: UserService) {}
 
   ngOnInit(): void {
     this.formArray = this.fb.array<FormGroup>([]);
@@ -55,9 +57,31 @@ export class RegisterComponent implements OnInit {
     this.updateFormArray(this.valueSelect);
   }
 
+  /* submit(): void {
+    if (this.formArray.valid) {
+      console.log(this.formArray.value); // Aquí enviaríamos al backend
+    } else {
+      this.formArray.markAllAsTouched();
+    }
+  } */
+
   submit(): void {
     if (this.formArray.valid) {
-      console.log(this.formArray.value); // Aquí enviarías al backend
+      const usuarios: Usuario[] = this.formArray.value.map((form) => ({
+        username: form.nombre,
+        email: form.email,
+        password: form.password,
+        rol: form.rol
+      }));
+
+      this.userService.createMultipleUsers(usuarios).subscribe({
+        next: (res) => {
+          console.log('Registro exitoso ->', res);
+        },
+        error: (err) => {
+          console.error('Error en el registro ->', err);
+        }
+      });
     } else {
       this.formArray.markAllAsTouched();
     }
