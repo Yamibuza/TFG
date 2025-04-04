@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Usuario } from '../../models/usuario.model';
 import { UserService } from '../../services/user.service';
-import { UserFormComponent } from "../../control/user-control/register/user-form/user-form.component";
+import { UserFormComponent } from '../../control/user-control/register/user-form/user-form.component';
 
 @Component({
   selector: 'app-user-list',
@@ -47,5 +47,23 @@ export class UserListComponent {
         alert('No se ha podido actualizar el usuario');
       },
     });
+  }
+
+  eliminarUsuario(username: string): void {
+    if (confirm(`¿Seguro que deseas eliminar al usuario ${username}?`)) {
+      this.userService.deleteUser(username).subscribe({
+        next: () => {
+          alert('Usuario eliminado correctamente');
+          this.usuarioEnEdicion = null;
+          this.userService.getUsers().subscribe((res) => {
+            this.usuarios = res;
+          });
+        },
+        error: (err) => {
+          console.error('Error al eliminar usuario:', err);
+          alert('No se ha podido eliminar el usuario');
+        },
+      });
+    }
   }
 }

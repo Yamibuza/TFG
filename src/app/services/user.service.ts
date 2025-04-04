@@ -32,8 +32,8 @@ export class UserService {
     return this.http.get<Usuario[]>(`${this.apiUrl}/get_users.php`);
   }
 
-  deleteUser(email: string): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/delete_user.php?email=${email}`);
+  deleteUser(username: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/delete_user.php`, { username });
   }
 
   updateUser(user: Usuario): Observable<any> {
